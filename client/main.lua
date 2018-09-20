@@ -48,7 +48,42 @@ end)
 Citizen.CreateThread(function()
 	while true do
 		Citizen.Wait(0)
-		
+		if isGettingTackled then
+		DisablePlayerFiring(playerPed, true)
+		SetCurrentPedWeapon(playerPed, GetHashKey('WEAPON_UNARMED'), true) -- unarm player
+		SetPedCanPlayGestureAnims(playerPed, false)
+		DisableControlAction(2, 24, true) -- Attack
+		DisableControlAction(2, 257, true) -- Attack 2
+		DisableControlAction(2, 25, true) -- Aim
+		DisableControlAction(2, 263, true) -- Melee Attack 1
+		DisableControlAction(2, Keys['R'], true) -- Reload
+		DisableControlAction(2, Keys['SPACE'], true) -- Jump
+		DisableControlAction(2, Keys['TAB'], true) -- Select Weapon
+		DisableControlAction(0, 47, true)  -- Disable weapon
+		DisableControlAction(0, 264, true) -- Disable melee
+		DisableControlAction(0, 257, true) -- Disable melee
+		DisableControlAction(0, 140, true) -- Disable melee
+		DisableControlAction(0, 141, true) -- Disable melee
+		DisableControlAction(0, 142, true) -- Disable melee
+		DisableControlAction(0, 143, true) -- Disable melee
+		else
+		DisablePlayerFiring(playerPed, false)
+		SetPedCanPlayGestureAnims(playerPed, true)
+		DisableControlAction(2, 24, false) -- Attack
+		DisableControlAction(2, 257, false) -- Attack 2
+		DisableControlAction(2, 25, false) -- Aim
+		DisableControlAction(2, 263, false) -- Melee Attack 1
+		DisableControlAction(2, Keys['R'], false) -- Reload
+		DisableControlAction(2, Keys['SPACE'], false) -- Jump
+		DisableControlAction(2, Keys['TAB'], false) -- Select Weapon
+		DisableControlAction(0, 47, false)  -- Disable weapon
+		DisableControlAction(0, 264, false) -- Disable melee
+		DisableControlAction(0, 257, false) -- Disable melee
+		DisableControlAction(0, 140, false) -- Disable melee
+		DisableControlAction(0, 141, false) -- Disable melee
+		DisableControlAction(0, 142, false) -- Disable melee
+		DisableControlAction(0, 143, false) -- Disable melee
+		end
 		if isRagdoll then
 			SetPedToRagdoll(GetPlayerPed(-1), 1000, 1000, 0, 0, 0, 0)
 		end
